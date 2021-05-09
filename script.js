@@ -4,8 +4,6 @@ const closeIcon = document.querySelector(".fa-times");
 const eventInputForm = document.querySelector(".event-input-form");
 const allTdEls = document.querySelector("td");
 
-// console.log(inputTreatment);
-
 const yearEl = document.getElementById("year");
 const monthEl = document.getElementById("month");
 const preMonthArrow = document.getElementById("left");
