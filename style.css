@@ -1,0 +1,345 @@
+:root {
+  --primary-color: blueviolet;
+  --sub-color1: rgba(0, 255, 0, 0.6);
+  --sub-color2: dodgerblue;
+  --sub-color3: hotpink;
+  --sub-color4: orange;
+  --sub-color5: rgb(73, 243, 243);
+}
+
+body {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+caption {
+  position: relative;
+  font-size: 30px;
+  user-select: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+i {
+  cursor: pointer;
+}
+
+.year {
+  position: absolute;
+  left: 20px;
+  font-size: 32px;
+}
+
+th {
+  font-size: 25px;
+  background: rgb(210, 148, 238);
+}
+
+.current-tbl td {
+  font-size: 25px;
+  width: 120px;
+  height: 95px;
+  vertical-align: baseline;
+}
+
+.fa-plus {
+  visibility: hidden;
+  color: gray;
+  font-size: 15px;
+  float: right;
+  position: relative;
+  right: 55px;
+  top: 5px;
+}
+
+.fa-minus {
+  visibility: hidden;
+  color: gray;
+  font-size: 15px;
+  float: right;
+  position: relative;
+  right: 10px;
+  top: 5px;
+}
+
+.current-tbl td:not(.gray):hover {
+  background: rgb(255, 255, 0, 0.4);
+}
+
+td:hover .fa-plus,
+td:hover .fa-minus {
+  visibility: visible;
+}
+
+.gray {
+  background: rgb(219, 215, 215);
+  color: gray;
+}
+
+.red {
+  color: red;
+}
+
+.gray.red {
+  color: rgb(241, 112, 112);
+}
+
+.events {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.event-container {
+  width: 38px;
+  height: 20px;
+  font-size: 15px;
+  text-align: center;
+  color: black;
+  position: relative;
+  margin: 0px 1px;
+}
+
+.event {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.i {
+  background: var(--sub-color1);
+}
+
+.s {
+  background: var(--sub-color2);
+}
+
+.e {
+  background: var(--sub-color3);
+}
+
+.c {
+  background: var(--sub-color4);
+}
+
+.f {
+  background: var(--sub-color5);
+}
+
+.half-opacity {
+  opacity: 0.5;
+}
+
+.fa-times-circle {
+  color: rgb(255, 0, 0, 1);
+  font-size: 15px;
+  font-weight: 500;
+  position: absolute;
+  right: 0;
+  bottom: 9px;
+  cursor: pointer;
+}
+
+.side-bar {
+  position: fixed;
+  background: transparent;
+  right: 30px;
+  top: 50px;
+  display: block;
+}
+
+.calc-icon,
+.setting-icon {
+  position: relative;
+  margin: 10px;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.calc-icon:hover,
+.setting-icon:hover {
+  transform: scale(1.1);
+}
+
+.setting-container {
+  border: 1px solid black;
+  user-select: none;
+}
+
+.setting-container input {
+  user-select: none;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input[type="date"] {
+  width: 130px;
+}
+
+h2 {
+  margin: 10px;
+}
+
+.result-table th {
+  font-size: 20px;
+  width: fit-content;
+}
+
+.result-table td {
+  font-size: 20px;
+  height: 40px;
+  text-align: center;
+  vertical-align: center;
+}
+
+.result-table td:hover {
+  transform: none;
+}
+
+#total-volume {
+  color: red;
+}
+
+.set-title {
+  position: relative;
+  text-align: center;
+  top: -18px;
+  left: 10px;
+  font-size: 25px;
+  background: white;
+  width: 60px;
+}
+
+.setting-form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.setting-form button {
+  margin-top: 10px;
+}
+
+.input-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lavender {
+  background: lavender;
+}
+
+.noshow {
+  display: none;
+  user-select: none;
+}
+
+.close {
+  text-align: right;
+  font-size: 25px;
+}
+
+.event-input-form {
+  padding: 5px 25px 15px 25px;
+  background: whitesmoke;
+  display: block;
+  border-radius: 5px;
+}
+
+.event-input-form p {
+  margin-bottom: 10px;
+}
+.event-input-form button {
+  width: 30%;
+  height: 30px;
+}
+
+input {
+  outline: none;
+}
+
+input:valid {
+  user-select: none;
+}
+
+input:invalid {
+  border-color: red;
+}
+
+.input-group {
+  margin-bottom: 5px;
+}
+
+.count-label {
+  visibility: hidden;
+}
+
+#count {
+  width: 70px;
+  visibility: hidden;
+}
+
+#split:checked ~ .count-label,
+#icsi:checked ~ .count-label,
+#civf:checked ~ .count-label {
+  visibility: visible;
+}
+
+#split:checked ~ * #count,
+#icsi:checked ~ * #count,
+#civf:checked ~ * #count {
+  visibility: visible;
+}
+
+.submitBtn-container {
+  width: 100%;
+  text-align: center;
+}
+
+#submit-event {
+  width: 20%;
+}
+
+.footer {
+  text-align: center;
+  color: gray;
+  width: 100%;
+  padding: 5px;
+}

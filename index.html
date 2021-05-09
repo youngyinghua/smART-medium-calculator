@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>smART液算</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="title">smART液算</h1>
+    <div class="content-container">
+      <div class="table-container">
+        <table class="current-tbl">
+          <caption>
+            <span class="year" id="year">2021</span>
+            <i class="fas fa-caret-left hidden" id="left"></i>
+            <span id="month"></span>
+            <i class="fas fa-caret-right" id="right"></i>
+          </caption>
+          <thead class="tbl-header">
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+            <th>日</th>
+          </thead>
+          <tbody class="current-tbody"></tbody>
+        </table>
+      </div>
+      <div class="result-container  ">
+        <h2>予測期間指定：</h2>
+        <form class="interval-form">
+          <input type="date" class="from-date" id="from-date" />
+          <span >~</span>
+          <input type="date" class="to-date" id="to-date" />
+          <button type="submit">OK</button>
+        </form>
+        <h2>予測結果：</h2>
+        <table class="result-table">
+          <tr>
+            <th></th>
+            <th>件数</th>
+            <th>皿数</th>
+            <th>液量(ml)</th>
+          </tr>
+          <tr>
+            <th>cIVF</th>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>ICSI</th>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>split</th>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>FET</th>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>ET</th>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>計</th>
+            <td></td>
+            <td></td>
+            <td id="total-volume"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="setting-container noshow">
+        <div class="set-title">設定</div>
+        <form class="setting-form">
+          <div class="input-group">
+            <label for="set-cIVF-1">cIVF時皿1枚で最大培養個数(個)：</label>
+            <input
+              type="number"
+              id="set-cIVF-1"
+              min="1"
+              max="30"
+              step="1"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-cIVF-2">cIVF時皿2枚で最大培養個数(個)：</label>
+            <input
+              type="number"
+              id="set-cIVF-2"
+              min="1"
+              max="30"
+              step="1"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-cIVF-3">cIVF時皿3枚で最大培養個数(個)：</label>
+            <input
+              type="number"
+              id="set-cIVF-3"
+              min="1"
+              max="30"
+              step="1"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-ICSI-1">ICSI時皿1枚で最大培養個数(個)：</label>
+            <input
+              type="number"
+              id="set-ICSI-1"
+              min="1"
+              max="30"
+              step="1"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-ICSI-2">ICSI時皿2枚で最大培養個数(個)：</label>
+            <input
+              type="number"
+              id="set-ICSI-2"
+              min="1"
+              max="30"
+              step="1"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-split">split時cIVFの割合(%)：</label>
+            <input
+              type="number"
+              id="set-split"
+              max="100"
+              min="10"
+              step="10"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-volume-1">cIVF/ICSI時皿1枚の培養液量(ml)：</label>
+            <input
+              type="number"
+              id="set-volume-1"
+              min="0.1"
+              max="5.0"
+              step="0.1"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-volume-2">FET/FBT時皿1枚の培養液量(ml)：</label>
+            <input
+              type="number"
+              id="set-volume-2"
+              min="0.1"
+              max="5.0"
+              step="0.1"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="set-volume-3">ET時皿1枚の培養液量(ml)：</label>
+            <input
+              type="number"
+              id="set-volume-3"
+              min="0.1"
+              max="5.0"
+              step="0.1"
+              required
+            />
+          </div>
+          <button type="submit">OK</button>
+        </form>
+      </div>
+        <div class="side-bar ">
+          <div class="calc-icon"><i class="fas fa-calculator"></i></div>
+          <div class="setting-icon"><i class="fas fa-cog"></i></div>
+        </div>
+      <div class="input-modal noshow">
+        <form class="event-input-form">
+          <div class="close">
+            <i class="fas fa-times"></i>
+          </div>
+          <p>治療法:</p>
+          <input type="radio" id="split" name="treatment" value="s" required />
+          <label for="split">Split</label>
+          <input type="radio" id="icsi" name="treatment" value="i" />
+          <label for="icsi">ICSI</label>
+          <input type="radio" id="civf" name="treatment" value="c" />
+          <label for="civf">cIVF</label>
+          <input type="radio" id="fet" name="treatment" value="f" />
+          <label for="fet">FET</label>
+          <input type="radio" id="et" name="treatment" value="e" />
+          <label for="et">ET</label>
+          <p class="count-label" >個数:</label>
+          <input type="number" id="count" name="count" min="1" max="100" placeholder="入力必要"/>
+          <div class="submitBtn-container">
+            <button type="submit">OK</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer">IVF Lab @ Keijinkai</div>
+    <!--Script-->
+    <script src="script.js"></script>
+  </body>
+</html>
