@@ -542,8 +542,6 @@ function filterEventData() {
       nthDayOfToDate -
       1;
   }
-  console.log(fromDate, toDate);
-  console.log(eventArrCombined.slice(startingIndex, endingIndex + 1));
   return eventArrCombined.slice(startingIndex, endingIndex + 1);
 }
 
