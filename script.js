@@ -38,9 +38,13 @@ const month2 = standardlization(currentYear, currentMonth + 1).newMonth;
 const year3 = standardlization(currentYear, currentMonth + 2).newYear;
 const month3 = standardlization(currentYear, currentMonth + 2).newMonth;
 
-const firstDayOfMonth1 = new Date(`${currentYear}/${currentMonth}/1`);
-const firstDayOfMonth2 = new Date(`${year2}/${month2}/1`);
-const firstDayOfMonth3 = new Date(`${year3}/${month3}/1`);
+// following commented can not used in IE
+// const firstDayOfMonth1 = new Date(`${currentYear}/${currentMonth}/1`);
+// const firstDayOfMonth2 = new Date(`${year2}/${month2}/1`);
+// const firstDayOfMonth3 = new Date(`${year3}/${month3}/1`);
+const firstDayOfMonth1 = new Date(currentYear + "/" + currentMonth + "/" + 1);
+const firstDayOfMonth2 = new Date(year2 + "/" + month2 + "/" + 1);
+const firstDayOfMonth3 = new Date(year3 + "/" + month3 + "/" + 1);
 
 const daysArr1 = createDaysArr(currentYear, currentMonth).daysArr;
 const daysArr2 = createDaysArr(currentYear, currentMonth + 1).daysArr;
@@ -196,6 +200,7 @@ function loadData() {
     settingValues = JSON.parse(localStorage.getItem("settingValues"));
   } else {
     localStorage.setItem("settingValues", JSON.stringify(defaultSettingValues));
+    settingValues = defaultSettingValues;
   }
 }
 

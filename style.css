@@ -322,9 +322,9 @@ input:invalid {
   visibility: visible;
 }
 
-#split:checked ~ * #count,
-#icsi:checked ~ * #count,
-#civf:checked ~ * #count {
+#split:checked ~ #count,
+#icsi:checked ~ #count,
+#civf:checked ~ #count {
   visibility: visible;
 }
 

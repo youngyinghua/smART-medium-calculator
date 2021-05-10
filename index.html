@@ -22,22 +22,24 @@
             <i class="fas fa-caret-right" id="right"></i>
           </caption>
           <thead class="tbl-header">
-            <th>月</th>
-            <th>火</th>
-            <th>水</th>
-            <th>木</th>
-            <th>金</th>
-            <th>土</th>
-            <th>日</th>
+            <tr>
+              <th>月</th>
+              <th>火</th>
+              <th>水</th>
+              <th>木</th>
+              <th>金</th>
+              <th>土</th>
+              <th>日</th>
+            </tr>
           </thead>
           <tbody class="current-tbody"></tbody>
         </table>
       </div>
-      <div class="result-container  ">
+      <div class="result-container noshow">
         <h2>予測期間指定：</h2>
         <form class="interval-form">
           <input type="date" class="from-date" id="from-date" />
-          <span >~</span>
+          <span>~</span>
           <input type="date" class="to-date" id="to-date" />
           <button type="submit">OK</button>
         </form>
@@ -192,10 +194,10 @@
           <button type="submit">OK</button>
         </form>
       </div>
-        <div class="side-bar ">
-          <div class="calc-icon"><i class="fas fa-calculator"></i></div>
-          <div class="setting-icon"><i class="fas fa-cog"></i></div>
-        </div>
+      <div class="side-bar">
+        <div class="calc-icon"><i class="fas fa-calculator"></i></div>
+        <div class="setting-icon"><i class="fas fa-cog"></i></div>
+      </div>
       <div class="input-modal noshow">
         <form class="event-input-form">
           <div class="close">
@@ -212,8 +214,15 @@
           <label for="fet">FET</label>
           <input type="radio" id="et" name="treatment" value="e" />
           <label for="et">ET</label>
-          <p class="count-label" >個数:</label>
-          <input type="number" id="count" name="count" min="1" max="100" placeholder="入力必要"/>
+          <p class="count-label">個数:</p>
+          <input
+            type="number"
+            id="count"
+            name="count"
+            min="1"
+            max="100"
+            placeholder="入力必要"
+          />
           <div class="submitBtn-container">
             <button type="submit">OK</button>
           </div>
