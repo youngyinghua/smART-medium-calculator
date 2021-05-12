@@ -114,7 +114,7 @@ let showSetting = false;
 function createDaysArr(unformatedYear, unformatedMonth) {
   const year = standardlization(unformatedYear, unformatedMonth).newYear;
   const month = standardlization(unformatedYear, unformatedMonth).newMonth;
-  const firstDay = new Date(`${year}/${month}/1`).getDay();
+  const firstDay = new Date(year + "/" + month + "/" + 1).getDay();
   const daysInFirstRow = firstDay === 0 ? 1 : 8 - firstDay;
   const allDaysInMonth = getDays(year, month);
   const rows = Math.ceil((allDaysInMonth - daysInFirstRow) / 7) + 1;
@@ -479,7 +479,7 @@ function populateSettingValues() {
 
 //set Date Inputs "min" "max" and "value" attributes
 function setDefaultDateInputs() {
-  const lastDayOfMonth3 = new Date(`${year3}/${month3}/${days3}`);
+  const lastDayOfMonth3 = new Date(year3 + "/" + month3 + "/" + days3);
   fromDateInput.setAttribute(
     "min",
     firstDayOfMonth1.toLocaleDateString("en-CA")
