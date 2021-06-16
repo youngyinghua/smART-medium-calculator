@@ -13,15 +13,19 @@ const currentTable = document.querySelector(".current-tbl");
 const currentTbody = document.querySelector(".current-tbody");
 const tblHeader = document.querySelector(".tbl-header");
 
-const calcIcon = document.querySelector(".calc-icon");
+const tableIcon = document.querySelector(".table-icon");
 const setIcon = document.querySelector(".setting-icon");
+const calcIcon = document.querySelector(".calc-icon");
 const resultContainer = document.querySelector(".result-container");
 const resultTable = document.querySelector(".result-table");
 const settingContainer = document.querySelector(".setting-container");
 const settingForm = document.querySelector(".setting-form");
+const calcContainer = document.querySelector(".calc-container");
 const intervalForm = document.querySelector(".interval-form");
 const fromDateInput = document.getElementById("from-date");
 const toDateInput = document.getElementById("to-date");
+const btns = document.querySelectorAll(".item");
+const display = document.querySelector(".display");
 
 const today = new Date();
 const currentDate = today.getDate();
@@ -107,6 +111,17 @@ let eventArrSubIndex;
 //toggle show/hide result/setting container
 let showResult = false;
 let showSetting = false;
+let showCalc = false;
+
+//calculator related variables
+const numberArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const operatorArr = ["+", "-", "*", "/"];
+
+let operator = "";
+let firstValue = "";
+let secondValue = "";
+let firstOK = false;
+let readySecond = false;
 
 // BASIC FUNCTIONS could be saved in a new .js file
 
@@ -440,9 +455,11 @@ function drop(index) {
 function toggleResult() {
   showResult = !showResult;
   showSetting = false;
+  showCalc = false;
   if (showResult) {
     resultContainer.classList.remove("noshow");
     settingContainer.classList.add("noshow");
+    calcContainer.classList.add("noshow");
   } else {
     resultContainer.classList.add("noshow");
   }
@@ -451,11 +468,26 @@ function toggleResult() {
 function toggleSetting() {
   showSetting = !showSetting;
   showResult = false;
+  showCalc = false;
   if (showSetting) {
-    resultContainer.classList.add("noshow");
     settingContainer.classList.remove("noshow");
+    resultContainer.classList.add("noshow");
+    calcContainer.classList.add("noshow");
   } else {
     settingContainer.classList.add("noshow");
+  }
+}
+
+function toggleCalc() {
+  showCalc = !showCalc;
+  showSetting = false;
+  showResult = false;
+  if (showCalc) {
+    calcContainer.classList.remove("noshow");
+    settingContainer.classList.add("noshow");
+    resultContainer.classList.add("noshow");
+  } else {
+    calcContainer.classList.add("noshow");
   }
 }
 
@@ -658,12 +690,130 @@ function calcVolumeAndPopulate(e) {
   }
 }
 
+//Calculator Functions
+function calculator(value1, value2, opera) {
+  value1 = Number(value1);
+  value2 = Number(value2);
+  let result;
+  switch (opera) {
+    case "+":
+      result = value1 + value2;
+      break;
+    case "-":
+      result = value1 - value2;
+      break;
+    case "*":
+      result = value1 * value2;
+      break;
+    case "/":
+      result = value2 === 0 ? "Error" : value1 / value2;
+      break;
+    default:
+      result = "Error";
+  }
+  if (result > 10000000000 || result === "Error") {
+    return "Error";
+  }
+  result = result.toString();
+  if (result.includes(".")) {
+    result = result.length <= 10 ? result : result.slice(0, 10);
+  }
+  if (result[9] === ".") {
+    result = result.slice(0, 9);
+  }
+  return result;
+}
+
+const clearAll = () => {
+  display.textContent = "0";
+  operator = "";
+  firstValue = "";
+  firstOK = false;
+  secondValue = "";
+  secondOK = false;
+  readySecond = false;
+  complete = true;
+};
+
+btns.forEach((btn) => {
+  btn.onclick = () => {
+    if (btn.value === "C") clearAll();
+    // if inputted is a number
+    if (numberArr.includes(btn.value)) {
+      if (!firstOK) {
+        if (display.textContent !== "0") {
+          display.textContent += btn.value;
+        } else {
+          display.textContent = btn.value;
+        }
+        firstValue = display.textContent;
+      } else {
+        if (readySecond) {
+          display.textContent = btn.value;
+          readySecond = false;
+        } else {
+          display.textContent += btn.value;
+        }
+        secondValue = display.textContent;
+      }
+    }
+
+    // if inputted is a decimal
+    if (btn.value === ".") {
+      if (display.textContent.includes(".") && !readySecond) return;
+      if (readySecond) {
+        display.textContent = "0.";
+        secondValue = display.textContent;
+        readySecond = false;
+      } else {
+        display.textContent += ".";
+      }
+    }
+
+    // if inputted is an operator
+    if (operatorArr.includes(btn.value)) {
+      if (!firstOK) {
+        firstValue = display.textContent;
+      } else {
+        if (secondValue) {
+          if (!operator) {
+            firstValue = secondValue;
+          } else {
+            secondValue = display.textContent;
+            display.textContent = calculator(firstValue, secondValue, operator);
+            firstValue = display.textContent;
+          }
+        } else {
+          operator = btn.value;
+        }
+      }
+      secondValue = "";
+      firstOK = true;
+      readySecond = true;
+      operator = btn.value;
+    }
+
+    // if inputted is an 'equal' sign
+    if (btn.value === "=") {
+      if (!operator) return;
+      secondValue = display.textContent;
+      display.textContent = calculator(firstValue, secondValue, operator);
+      firstValue = display.textContent;
+      readySecond = true;
+      firstOK = true;
+      secondValue = "";
+      operator = "";
+    }
+  };
+});
+
 nextMonthArrow.addEventListener("click", showNextMonth);
 preMonthArrow.addEventListener("click", showPreMonth);
 closeIcon.addEventListener("click", closeModal);
 eventInputForm.addEventListener("submit", addEvent);
-calcIcon.addEventListener("click", toggleResult);
+tableIcon.addEventListener("click", toggleResult);
 setIcon.addEventListener("click", toggleSetting);
+calcIcon.addEventListener("click", toggleCalc);
 settingForm.addEventListener("submit", setValue);
 intervalForm.addEventListener("submit", calcVolumeAndPopulate);
 

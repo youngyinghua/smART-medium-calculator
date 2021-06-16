@@ -172,8 +172,9 @@ td:hover .fa-minus {
   display: block;
 }
 
-.calc-icon,
-.setting-icon {
+.table-icon,
+.setting-icon,
+.calc-icon {
   position: relative;
   margin: 10px;
   font-size: 40px;
@@ -181,9 +182,15 @@ td:hover .fa-minus {
   cursor: pointer;
 }
 
-.calc-icon:hover,
-.setting-icon:hover {
+.table-icon:hover,
+.setting-icon:hover,
+.calc-icon:hover {
   transform: scale(1.1);
+}
+
+.fa-calculator {
+  position: relative;
+  left: 3px;
 }
 
 .setting-container {
@@ -337,9 +344,67 @@ input:invalid {
   width: 20%;
 }
 
-.footer {
+/* calculator css */
+
+.calc-container {
+  width: 300px;
+  background: transparent;
+}
+
+.display {
+  background: black;
+  color: white;
+  height: 90px;
+  line-height: 90px;
+  text-align: right;
+  border-radius: 10px 10px 0 0;
+  padding-right: 15px;
+  font-size: 50px;
+}
+
+.grid-container {
+  background: rgba(138, 43, 226, 0.2);
+  border-radius: 0 0 10px 10px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.item {
   text-align: center;
-  color: gray;
-  width: 100%;
-  padding: 5px;
+  font-size: 30px;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.item:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.number {
+  background: rgba(0, 0, 0, 0.3);
+  color: black;
+}
+
+.equal {
+  background: rgb(96, 240, 74);
+  color: white;
+  grid-area: 2 / 4 / 6 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.operator {
+  background: rgba(0, 0, 0, 0.6);
+  color: whitesmoke;
+}
+
+.clear {
+  background: red;
+  color: whitesmoke;
 }
