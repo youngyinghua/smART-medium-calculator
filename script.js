@@ -152,12 +152,12 @@ function createDaysArr(unformatedYear, unformatedMonth) {
 // get correct year and month when month is not between 1 -12
 function standardlization(year, month) {
   if (month > 12) {
-    month = month % 12;
     year = year + Math.floor(month / 12);
+    month = month % 12;
   }
   if (month < 1) {
-    month = (month % 12) + 12;
     year = year + Math.floor(month / 12);
+    month = (month % 12) + 12;
   }
   return {
     newYear: year,
